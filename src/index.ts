@@ -36,9 +36,6 @@ function menuPrincipal(): void {
             case '5':
                 aplicarDescuento();
                 break;
-            case '6':
-                venderLibro();
-                break;
             case '0':
                 rl.close();
                 break;
@@ -88,8 +85,8 @@ function insertarLibro(): void {
 
 
 function buscarLibro(): void {
-    rl.question('Ingrese el Titulo del libro a buscar: ', (titulo) => {
-        const libro = biblioteca.buscarLibro(titulo);
+    rl.question('Ingrese el ISBN del libro a buscar: ', (isbn) => {
+        const libro = biblioteca.buscarLibro(isbn);
         if (libro) {
             console.log(`Libro encontrado: ${libro.titulo}`);
         } else {
@@ -100,8 +97,8 @@ function buscarLibro(): void {
 }
 
 function eliminarLibro(): void {
-    rl.question('Ingrese el ISBN del libro a eliminar: ', (titulo) => {
-        if (biblioteca.eliminarLibro(titulo)) {
+    rl.question('Ingrese el ISBN del libro a eliminar: ', (isbn) => {
+        if (biblioteca.eliminarLibro(isbn)) {
             console.log('Libro eliminado.');
         } else {
             console.log('Libro no encontrado.');
@@ -136,12 +133,7 @@ function aplicarDescuento(): void {
     });
 }
 
-function venderLibro(): void {
-    rl.question('Ingrese el ISBN del libro a vender: ', (isbn) => {
-        Transacciones.venderLibro(biblioteca, isbn);
-        menuPrincipal();
-    });
-}
+
 
 menuPrincipal();
 
